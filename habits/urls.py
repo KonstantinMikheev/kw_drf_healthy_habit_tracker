@@ -1,10 +1,10 @@
+from habits.views import HabitViewSet
 from users.apps import UsersConfig
-from users.views import UserViewSet
 from rest_framework.routers import DefaultRouter
 
 app_name = UsersConfig.name
 
 router = DefaultRouter()
-router.register(r"users", UserViewSet, basename="users")
+router.register(r"users", HabitViewSet, basename="habits")
 
 urlpatterns = router.urls
