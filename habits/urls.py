@@ -5,6 +5,6 @@ from rest_framework.routers import DefaultRouter
 app_name = UsersConfig.name
 
 router = DefaultRouter()
-router.register(r"users", HabitViewSet, basename="habits")
+router.register(r"habits", HabitViewSet, basename="habits")
 
 urlpatterns = router.urls

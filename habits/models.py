@@ -12,6 +12,7 @@ class Habit(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name="Владелец",
+        **NULLABLE
     )
     place = models.CharField(
         max_length=200,
@@ -41,18 +42,16 @@ class Habit(models.Model):
         verbose_name="Вознаграждение",
         help_text="Чем пользователь должен себя вознаградить после выполнения",
     )
-    time_to_execute = models.TimeField(
+    duration = models.SmallIntegerField(
         verbose_name="Время на выполнение",
         help_text="Время, которое предположительно потратит пользователь на выполнение привычки в минутах",
     )
     is_public = models.BooleanField(default=False, verbose_name="Публичность")
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
 
     class Meta:
         verbose_name = "привычка"
         verbose_name_plural = "привычки"
-        ordering = ["-created_at"]
 
 
     def __str__(self):

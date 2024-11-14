@@ -12,7 +12,7 @@ class ExecuteTimeValidator:
     """Проверка времени выполнения привычки"""
 
     def __call__(self, habit):
-        if habit.get('time_to_execute') > 2:
+        if habit.get('duration') > 2:
                 raise ValidationError('Время на выполнение привычки не может превышать 2 минуты')
 
 class RelatedAndIsGoodValidator:
