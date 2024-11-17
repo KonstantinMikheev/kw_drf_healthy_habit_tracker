@@ -41,6 +41,7 @@ class Habit(models.Model):
         max_length=200,
         verbose_name="Вознаграждение",
         help_text="Чем пользователь должен себя вознаградить после выполнения",
+        **NULLABLE,
     )
     duration = models.SmallIntegerField(
         verbose_name="Время на выполнение",
