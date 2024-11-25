@@ -10,6 +10,8 @@
 - djangorestframework 3.15.2
 - PostgreSQL
 - Celery
+- Redis
+- Docker, Docker Compose
 
 ### Инструкция для развертывания проекта:
 
@@ -37,8 +39,15 @@ source venv/bin/activate
 pip install -r pyproject.toml
 ```
 
-#### Открыть проект в PyCharm.
+#### Откройте проект в PyCharm, настройте базу данных в settings.py и выполните миграции:
 
+```bash
+python3 manage.py migrate
+```
+
+#### Для корректной работы проекта, требуется файл .env, который содержит переменные окружения:
+
+Для настройки файла, в корне проекта создайте файл `.env` и заполните его переменными окружения указанными в файле `env.sample`
 
 ### Запуск программы
 
@@ -46,4 +55,30 @@ pip install -r pyproject.toml
 python3 manage.py runserver
 ```
 
-Автор проекта Константин Михеев
+#### Чтобы начать рассылку напоминаний в терминале запустите celery worker командой
+
+```bash
+celery -A config worker -l INFO
+```
+#### Команда для windows:
+
+```bash
+celery -A config worker -l INFO -P eventlet
+```
+
+### Запуск через Docker Compose:
+
+Для запуска всех сервисов выполните команду:
+```bash
+docker-compose up --build
+```
+Для запуска в фоновом режиме:
+```bash
+docker-compose up -d
+```
+После запуска доступность сервисов можно проверить командой:
+```bash
+docker-compose ps
+```
+
+### Автор проекта Константин Михеев
